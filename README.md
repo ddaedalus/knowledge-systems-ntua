@@ -3,7 +3,7 @@ In this project a Semantic Web Database is developed in Protégé and some SPARQ
 Techologies used: OWL, RDF, SPARQL.  
    
 ## Ontology
-This was implemented in Protégé, which create ontologies in .owl file extension. An ontology is a vocabulary defining the concepts and relationships used to describe an area of concern. Here, we describe Athens Transport Network. It's composed of:
+This was implemented in Protégé, which create ontologies in .owl file extension. An ontology is a vocabulary defining the concepts and relationships used to describe an area of concern. Here, we describe Athens Transport Network ([oasa](http://geodata.gov.gr/el/dataset/oasa)). It's composed of:
 
 - Classes (e.g. Bus, Trip etc) to represent a concept.
 - Data Properties (e.g. hasTrip) to represent relation between concepts.
