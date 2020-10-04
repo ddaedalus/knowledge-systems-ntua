@@ -1,0 +1,285 @@
+# GRAPH URI: http://www.ex.org/ontologyEL15187
+
+# 0.
+SELECT count(*)
+WHERE {
+	?a   ?b   ?c
+}
+
+
+# 1.
+# EPISTREFEI POIA LEWFOREIA PERNANE APO THN STASH ME ID=640046
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+PREFIX  st:<http://www.ex.org/ontologyEL15187/StationBus/>
+
+SELECT distinct ?bus
+WHERE {  
+	?bus  a ex:Bus.
+ 	?bus  ex:fulfilsTripBus ?trip.
+	?trip ex:hasStationBus   st:640046.		
+}
+
+# 2.
+# EPISTREFEI POIA LEWFOREIA PERNANE APO THN STASH ME LITERAL "ΚΟΜΝΗΝΩΝ"
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+
+SELECT distinct ?bus
+WHERE {  
+	?bus   a   ex:Bus.
+        ?bus   ex:fulfilsTripBus   ?trip.
+	?trip   ex:hasStationBus   ?st.	
+	?st   ex:stationBusHasName   "ΚΟΜΝΗΝΩΝ"
+}
+
+
+# 3.
+# OLA TA LEWFOREIA KAI TIS WRES POU PERNANE APO THN STASH ME ID=100001
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+PREFIX  st:<http://www.ex.org/ontologyEL15187/StationBus/>
+
+SELECT ?bus ?time
+WHERE { 
+	?bus   a   ex:Bus.
+	?bus   ex:fulfilsTripBus   ?trip.
+	?trip   ex:hasStationBus   st:640046.
+	?trip	ex:tripBusHasStopTime   ?time.
+	st:100001   ex:stationBusStopTime   ?time.
+}
+
+
+# 4.
+# BRISKEI SINTOMOTERI DIADROMI KAI EPISTREFEI STATION: ID, GEOMETRY, DIST
+PREFIX st:<http://www.ex.org/ontologyEL15187/StationBus/>
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+
+SELECT ?x ?point2 ?dist
+WHERE {
+     	st:100001 ex:stationBusIsLocatedAt ?point. 
+      	?x ex:stationBusIsLocatedAt ?point2.
+      	FILTER(?x != st:100001)
+      	BIND(bif:st_distance(?point, ?point2) as ?dist).
+}
+ORDER BY ASC (?dist)
+LIMIT 1
+
+
+# 5.
+# FERE OLA TA LEWFOREIA POU PERNOUN APO THN STASH ME TO DOSMENO POINT
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+
+SELECT distinct ?bus
+WHERE {
+        BIND("POINT(38.070813012283 23.710395367301)"^^<http://www.openlinksw.com/schemas/virtrdf#Geometry> as ?p).
+
+        ?station   ex:stationBusIsLocatedAt   ?point.
+        FILTER(bif:st_distance(?p, ?point) < 0.0001).
+
+      	?tripBus   ex:hasStationBus   ?station.
+       	?bus ex:fulfilsTripBus   ?tripBus
+}
+
+
+# 6.
+# FERE OLES TIS STASEIS POU APEXOUN 1KM APO THN TOPO8ESIA MOU, POINT(38.070813012283 23.710395367301), (SE ASC ORDER)
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+
+SELECT ?station ?dist 
+WHERE {
+        BIND("POINT(38.070813012283 23.710395367301)"^^<http://www.openlinksw.com/schemas/virtrdf#Geometry> as ?p)
+
+        ?station    ex:stationBusIsLocatedAt   ?point.
+        FILTER (bif:st_intersects (?p, ?point, 1)).
+       	BIND(bif:st_distance(?p, ?point) as ?dist).
+
+}
+ORDER BY ASC (?dist)
+
+
+# 7. 
+# FERE OLA TA LEWFOREIA KAI TIS ANTISTOIXES STASEIS POU APEXOUN 1KM APO THN TOPO8ESIA MOU, POINT(38.070813012283 23.710395367301), (SE ASC ORDER)
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+
+SELECT ?bus ?station ?dist
+WHERE {
+        BIND("POINT(38.070813012283 23.710395367301)"^^<http://www.openlinksw.com/schemas/virtrdf#Geometry> as ?p)
+
+	?station   ex:stationBusIsLocatedAt   ?point.
+	FILTER (bif:st_intersects (?p, ?point, 1)).
+      	BIND(bif:st_distance(?p, ?point) as ?dist).
+	?bus ex:hasStationBus ?station
+}
+ORDER BY ASC (?dist)
+
+
+# 8.
+# ME POSOUS TROPOUS MPORW NA PARW 1 LEWFOREIO GIA NA PAW APO THN MIA STASH SE MIA ALLH
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+PREFIX st:<http://www.ex.org/ontologyEL15187/StationBus/>
+
+SELECT distinct ?bus1 
+WHERE {
+	?bus1   a   ex:Bus.
+        ?bus1   ex:fulfilsTripBus   ?trip1.
+	?trip1   ex:hasStationBus   st:100003.
+	?trip1   ex:hasStationBus   st:100001.
+}
+
+
+# 9.
+# ME POSOUS TROPOUS MPORW NA PARW 2 LEWFOREIA GIA NA PAW APO THN MIA STASH SE MIA ALLH
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+PREFIX st:<http://www.ex.org/ontologyEL15187/StationBus/>
+
+SELECT distinct ?bus1 ?bus2
+WHERE {
+	?bus1   a   ex:Bus.
+        ?bus1   ex:fulfilsTripBus   ?trip1.
+	?trip1   ex:hasStationBus   st:100003.
+	?trip1   ex:hasStationBus   ?station.
+	?bus2   a   ex:Bus.
+	?bus2   ex:fulfilsTripBus   ?trip2.
+	?trip2   ex:hasStationBus   ?station.
+	?trip2   ex:hasStationBus   st:100001.
+	FILTER(?bus1 != ?bus2)
+}
+
+
+# 10.
+# ME POSOUS TROPOUS (ARI8MOS) MPORW NA PARW 3 LEWFOREIA GIA NA PAW APO THN MIA STASH SE MIA ALLH
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+PREFIX st:<http://www.ex.org/ontologyEL15187/StationBus/>
+
+SELECT distinct ?bus1 ?bus2 ?bus3
+WHERE {
+	?bus1   a   ex:Bus.
+	?bus1   ex:fulfilsTripBus   ?trip1.
+	?trip1   ex:hasStationBus   st:100003.
+	?trip1   ex:hasStationBus   ?station.
+	?bus2   a   ex:Bus.
+	?bus2   ex:fulfilsTripBus   ?trip2.
+	?trip2   ex:hasStationBus   ?station.
+	?trip2   ex:hasStationBus   st:station2.
+	?bus3   a   ex:Bus.
+	?bus3   ex:fulfilsTripBus   ?trip3.
+	?trip3   ex:hasStationBus   ?station2.
+	?trip3   ex:hasStationBus   st:100010
+}
+
+
+# 11.
+# ME POSOUS TROPOUS MPORW NA PARW 1 LEWFOREIO GIA NA PAW APO THN MIA STASH(100003) SE MIA ALLH (100001) ME ASC ORDER THN WRA POU 8A F8ASW EKEI SE ORISMENA XRONIKA PLAISIA
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+PREFIX st:<http://www.ex.org/ontologyEL15187/StationBus/>
+
+SELECT distinct ?bus1  ?time
+WHERE {
+	?bus1   a   ex:Bus.
+        ?bus1   ex:fulfilsTripBus   ?trip1.
+	?trip1   ex:hasStationBus   st:100003.
+	?trip1   ex:hasStationBus   st:100001.
+	?trip1   ex:tripBusHasStopTime   ?time.
+	st:100001    ex:stationBusStopTime   ?time.
+	FILTER(?time > "10:22:00" )
+        FILTER(?time < "10:45:00" )
+}
+ORDER BY ASC (?time)
+
+
+# 12.
+# FERE OLA TA ONOMATA STASEWN TOU 410
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+PREFIX bus:<http://www.ex.org/ontologyEL15187/Bus/>
+
+SELECT distinct ?station ?name
+WHERE {
+	bus:410   ex:fulfilsTripBus   ?trip.
+	?trip   ex:hasStationBus   ?station.
+        ?station   ex:stationBusHasName   ?name
+}
+
+
+# AIRPORTS
+
+# 13. 
+# FERE TO TRIP GIA NA PAW APO TO ENA AIRPORT STO ALLO
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+PREFIX air:<http://www.ex.org/ontologyEL15187/Airport>
+
+SELECT ?trip
+WHERE {
+	?airport1   ex:airportHasName   "ΕΛ.ΒΕΝΙΖΕΛΟΣ".
+	?airport2   ex:airportHasName   "ΜΕΓΑΣ ΑΛΕΞΑΝΔΡΟΣ".
+	?airplane   ex:fulfilsTripFlight   ?trip.
+        ?trip   ex:hasAirport  ?airport1.
+	?trip   ex:hasAirport  ?airport2. 	
+}
+
+
+# TRAIN
+
+# 14.
+# FERE TO TRIP GIA NA PAW APO TO ENA AIRPORT STO ALLO
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+
+SELECT ?trip
+WHERE {
+	?st1   ex:stationTrainHasName   "ΚΗΦΙΣΙΑ".   
+	?st2   ex:stationTrainHasName   "ΝΕΟ ΗΡΑΚΛΕΙΟ".
+        ?trip   ex:hasStationTrain   ?st1. 
+	?trip   ex:hasStationTrain   ?st2.  
+	?st2	ex:stationTrainStopTime   ?time.
+        ?trip   ex:tripTrainStopTime   ?time.
+        FILTER(?time > "9:32:00").
+        FILTER(?time < "9:55:00").
+}
+
+
+# TRAM
+
+# 15.
+# TA TRAM POU PERNANE APO THN DOSMENH STASH
+SELECT distinct ?tram
+WHERE {
+        BIND("POINT(38.070283 23.71039)"^^<http://www.openlinksw.com/schemas/virtrdf#Geometry> as ?p).
+
+        ?station   ex:stationTramIsLocatedAt   ?point.
+        FILTER(bif:st_distance(?p, ?point) < 0.0001).
+
+      	?trip   ex:hasStationTram   ?station.
+       	?tram ex:fulfilsTripTram   ?trip.
+}
+
+
+# SHIP
+
+# 16.
+# FERE TO TRIP GIA NA PAW APO TO ENA PORT STO ALLO
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+
+SELECT ?trip
+WHERE {
+	?port1   ex:portHasName   "ΠΕΙΡΑΙΑΣ".
+	?port2   ex:portHasName   "ΜΥΚΟΝΟΣ".
+	?ship   ex:fulfilsTripShip   ?trip.
+        ?trip   ex:hasAirport  ?port1.
+	?trip   ex:hasAirport  ?port2. 	
+}
+
+
+# UNDERGROUND
+
+# 17.
+# FERE TO TRIP KAI TO TIME POU 8A F8ASW GIA NA PAW APO TO ENA STATION STO ALLO
+PREFIX ex:<http://www.ex.org/ontologyEL15187/>
+
+SELECT ?trip ?time
+WHERE {
+	?st1   ex:stationUndergroundHasName   "ΔΟΥΚΙΣΣΗΣ ΠΛΑΚΕΝΤΙΑΣ".   
+	?st2   ex:stationUndergroundHasName   "ΚΑΤΕΧΑΚΗ".
+        ?trip   ex:hasStationUnderground   ?st1. 
+	?trip   ex:hasStationUnderground   ?st2.  
+	?st2	ex:stationUndergroundStopTime   ?time.
+        ?trip   ex:tripUndergroundStopTime   ?time.
+        FILTER(?time > "10:22:00").
+        FILTER(?time < "10:45:00").
+}

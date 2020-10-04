@@ -1,0 +1,718 @@
+@prefix : <http://www.ex.org/myontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.ex.org/ontologyEL15187/> .
+
+<http://www.ex.org/ontologyEL15187/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.ex.org/myontology/fulfilsFlight
+:fulfilsFlight rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :fulfilsRoute ;
+               rdfs:domain :Airplane ;
+               rdfs:range :RouteAirplane .
+
+
+###  http://www.ex.org/myontology/fulfilsRoute
+:fulfilsRoute rdf:type owl:ObjectProperty ;
+              rdfs:domain :Mean ;
+              rdfs:range :Route .
+
+
+###  http://www.ex.org/myontology/fulfilsRouteBus
+:fulfilsRouteBus rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :fulfilsRoute ;
+                 rdfs:domain :Bus ;
+                 rdfs:range :RouteBus .
+
+
+###  http://www.ex.org/myontology/fulfilsRouteShip
+:fulfilsRouteShip rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :fulfilsRoute ;
+                  rdfs:domain :Ship ;
+                  rdfs:range :RouteShip .
+
+
+###  http://www.ex.org/myontology/fulfilsRouteTrain
+:fulfilsRouteTrain rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :fulfilsRoute ;
+                   rdfs:domain :Train ;
+                   rdfs:range :RouteTrain .
+
+
+###  http://www.ex.org/myontology/fulfilsRouteTram
+:fulfilsRouteTram rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :fulfilsRoute ;
+                  rdfs:domain :Tram ;
+                  rdfs:range :RoutTram .
+
+
+###  http://www.ex.org/myontology/fulfilsRouteUnderground
+:fulfilsRouteUnderground rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :fulfilsRoute ;
+                         rdfs:domain :Underground ;
+                         rdfs:range :RouteUnderground .
+
+
+###  http://www.ex.org/myontology/fulfilsTrip
+:fulfilsTrip rdf:type owl:ObjectProperty ;
+             rdfs:domain :Mean ;
+             rdfs:range :Trip .
+
+
+###  http://www.ex.org/myontology/fulfilsTripBus
+:fulfilsTripBus rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :fulfilsTrip ;
+                rdfs:domain :Bus ;
+                rdfs:range :TripBus .
+
+
+###  http://www.ex.org/myontology/fulfilsTripFlight
+:fulfilsTripFlight rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :fulfilsTrip ;
+                   rdfs:domain :Airplane ;
+                   rdfs:range :TripAirplane .
+
+
+###  http://www.ex.org/myontology/fulfilsTripShip
+:fulfilsTripShip rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :fulfilsTrip ;
+                 rdfs:domain :Ship ;
+                 rdfs:range :TripShip .
+
+
+###  http://www.ex.org/myontology/fulfilsTripTrain
+:fulfilsTripTrain rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :fulfilsTrip ;
+                  rdfs:domain :Train ;
+                  rdfs:range :TripTrain .
+
+
+###  http://www.ex.org/myontology/fulfilsTripTram
+:fulfilsTripTram rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :fulfilsTrip ;
+                 rdfs:domain :Tram ;
+                 rdfs:range :TripTram .
+
+
+###  http://www.ex.org/myontology/fulfilsTripUnderground
+:fulfilsTripUnderground rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :fulfilsTrip ;
+                        rdfs:domain :Underground ;
+                        rdfs:range :TripUnderground .
+
+
+###  http://www.ex.org/myontology/hasAirport
+:hasAirport rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasStation ;
+            rdfs:domain :TripAirplane ;
+            rdfs:range :Airport .
+
+
+###  http://www.ex.org/myontology/hasPort
+:hasPort rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :hasStation ;
+         rdfs:domain :TripShip ;
+         rdfs:range :Port .
+
+
+###  http://www.ex.org/myontology/hasStation
+:hasStation rdf:type owl:ObjectProperty ;
+            rdfs:domain :Trip ;
+            rdfs:range :Station .
+
+
+###  http://www.ex.org/myontology/hasStationBus
+:hasStationBus rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :hasStation ;
+               rdfs:domain :TripBus ;
+               rdfs:range :StationBus .
+
+
+###  http://www.ex.org/myontology/hasStationTrain
+:hasStationTrain rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasStation ;
+                 rdfs:domain :TripTrain ;
+                 rdfs:range :StationTrain .
+
+
+###  http://www.ex.org/myontology/hasStationTram
+:hasStationTram rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasStation ;
+                rdfs:domain :TripTram ;
+                rdfs:range :StationTram .
+
+
+###  http://www.ex.org/myontology/hasStationUnderground
+:hasStationUnderground rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :hasStation ;
+                       rdfs:domain :TripUnderground ;
+                       rdfs:range :StationUnderground .
+
+
+###  http://www.ex.org/myontology/routeAirplaneStartsAt
+:routeAirplaneStartsAt rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :routeStartsAt ;
+                       rdfs:domain :RouteAirplane ;
+                       rdfs:range :Airport .
+
+
+###  http://www.ex.org/myontology/routeAirplanehasTripAirplane
+:routeAirplanehasTripAirplane rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf :routehasTrip ;
+                              rdfs:domain :RouteAirplane ;
+                              rdfs:range :TripAirplane .
+
+
+###  http://www.ex.org/myontology/routeBusHasStation
+:routeBusHasStation rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :routeHasStation ;
+                    rdfs:domain :RouteBus ;
+                    rdfs:range :StationBus .
+
+
+###  http://www.ex.org/myontology/routeBusStartsAt
+:routeBusStartsAt rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :routeStartsAt ;
+                  rdfs:domain :RouteBus ;
+                  rdfs:range :StationBus .
+
+
+###  http://www.ex.org/myontology/routeBushasTripBus
+:routeBushasTripBus rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :routehasTrip ;
+                    rdfs:domain :RouteBus ;
+                    rdfs:range :TripBus .
+
+
+###  http://www.ex.org/myontology/routeHasStation
+:routeHasStation rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain :Route ;
+                 rdfs:range :Station .
+
+
+###  http://www.ex.org/myontology/routeShipStartsAt
+:routeShipStartsAt rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :routeStartsAt ;
+                   rdfs:domain :RouteShip ;
+                   rdfs:range :Port .
+
+
+###  http://www.ex.org/myontology/routeShiphasTripShip
+:routeShiphasTripShip rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :routehasTrip ;
+                      rdfs:domain :RouteShip ;
+                      rdfs:range :TripShip .
+
+
+###  http://www.ex.org/myontology/routeStartsAt
+:routeStartsAt rdf:type owl:ObjectProperty ;
+               rdfs:domain :Route ;
+               rdfs:range :Station .
+
+
+###  http://www.ex.org/myontology/routeTrainStartsAt
+:routeTrainStartsAt rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :routeStartsAt ;
+                    rdfs:domain :RouteTrain ;
+                    rdfs:range :StationTrain .
+
+
+###  http://www.ex.org/myontology/routeTrainhasTripTrain
+:routeTrainhasTripTrain rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :routehasTrip ;
+                        rdfs:domain :RouteTrain ;
+                        rdfs:range :TripTrain .
+
+
+###  http://www.ex.org/myontology/routeTramStartsAt
+:routeTramStartsAt rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :routeStartsAt ;
+                   rdfs:domain :RoutTram ;
+                   rdfs:range :StationTram .
+
+
+###  http://www.ex.org/myontology/routeTramhasTripTram
+:routeTramhasTripTram rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :routehasTrip ;
+                      rdfs:domain :RoutTram ;
+                      rdfs:range :TripTram .
+
+
+###  http://www.ex.org/myontology/routeUndergroundStartsAt
+:routeUndergroundStartsAt rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf :routeStartsAt ;
+                          rdfs:domain :RouteUnderground ;
+                          rdfs:range :StationUnderground .
+
+
+###  http://www.ex.org/myontology/routeUndergroundhasTripUnderground
+:routeUndergroundhasTripUnderground rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf :routehasTrip ;
+                                    rdfs:domain :RouteUnderground ;
+                                    rdfs:range :TripUnderground .
+
+
+###  http://www.ex.org/myontology/routehasTrip
+:routehasTrip rdf:type owl:ObjectProperty ;
+              rdfs:domain :Route ;
+              rdfs:range :Trip .
+
+
+###  http://www.ex.org/ontologyEL15187/routeAirplaneHasStation
+:routeAirplaneHasStation rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :routeHasStation ;
+                         rdfs:domain :RouteAirplane ;
+                         rdfs:range :Airport .
+
+
+###  http://www.ex.org/ontologyEL15187/routeShipHasStation
+:routeShipHasStation rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :routeHasStation ;
+                     rdfs:domain :RouteShip ;
+                     rdfs:range :Port .
+
+
+###  http://www.ex.org/ontologyEL15187/routeTrainHasStation
+:routeTrainHasStation rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :routeHasStation ;
+                      rdfs:domain :RouteTrain ;
+                      rdfs:range :StationTrain .
+
+
+###  http://www.ex.org/ontologyEL15187/routeTramHasStation
+:routeTramHasStation rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :routeHasStation ;
+                     rdfs:domain :RoutTram ;
+                     rdfs:range :StationTram .
+
+
+###  http://www.ex.org/ontologyEL15187/routeUndergroundHasStation
+:routeUndergroundHasStation rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf :routeHasStation ;
+                            rdfs:domain :RouteUnderground ;
+                            rdfs:range :StationUnderground .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.ex.org/myontology/airportIsLocatedAt
+:airportIsLocatedAt rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :stationIsLocatedAt ;
+                    rdfs:domain :Airport .
+
+
+###  http://www.ex.org/myontology/airportStopTime
+:airportStopTime rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :stationStopTime ;
+                 rdfs:domain :Airport .
+
+
+###  http://www.ex.org/myontology/portIsLocatedAt
+:portIsLocatedAt rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :stationIsLocatedAt ;
+                 rdfs:domain :Port .
+
+
+###  http://www.ex.org/myontology/portStopTime
+:portStopTime rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :stationStopTime ;
+              rdfs:domain :Port .
+
+
+###  http://www.ex.org/myontology/routeBusHasName
+:routeBusHasName rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :routeHasName ;
+                 rdfs:domain :RouteBus .
+
+
+###  http://www.ex.org/myontology/routeHasName
+:routeHasName rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain :Route .
+
+
+###  http://www.ex.org/myontology/stationBusHasName
+:stationBusHasName rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :stationHasName ;
+                   rdfs:domain :StationBus .
+
+
+###  http://www.ex.org/myontology/stationBusIsLocatedAt
+:stationBusIsLocatedAt rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf :stationIsLocatedAt ;
+                       rdfs:domain :StationBus .
+
+
+###  http://www.ex.org/myontology/stationBusStopTime
+:stationBusStopTime rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :stationStopTime ;
+                    rdfs:domain :StationBus .
+
+
+###  http://www.ex.org/myontology/stationHasName
+:stationHasName rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:domain :Station .
+
+
+###  http://www.ex.org/myontology/stationIsLocatedAt
+:stationIsLocatedAt rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :Station .
+
+
+###  http://www.ex.org/myontology/stationStopTime
+:stationStopTime rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Station .
+
+
+###  http://www.ex.org/myontology/stationTrainIsLocatedAt
+:stationTrainIsLocatedAt rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf :stationIsLocatedAt ;
+                         rdfs:domain :StationTrain .
+
+
+###  http://www.ex.org/myontology/stationTrainStopTime
+:stationTrainStopTime rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :stationStopTime ;
+                      rdfs:domain :StationTrain .
+
+
+###  http://www.ex.org/myontology/stationTramIsLocatedAt
+:stationTramIsLocatedAt rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf :stationIsLocatedAt ;
+                        rdfs:domain :StationTram .
+
+
+###  http://www.ex.org/myontology/stationTramStopTime
+:stationTramStopTime rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :stationStopTime ;
+                     rdfs:domain :StationTram .
+
+
+###  http://www.ex.org/myontology/stationUndergroundIsLocatedAt
+:stationUndergroundIsLocatedAt rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf :stationIsLocatedAt ;
+                               rdfs:domain :StationUnderground .
+
+
+###  http://www.ex.org/myontology/stationUndergroundStopTime
+:stationUndergroundStopTime rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf :stationStopTime ;
+                            rdfs:domain :StationUnderground .
+
+
+###  http://www.ex.org/myontology/tripAirplaneStopTime
+:tripAirplaneStopTime rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :tripStopTime ;
+                      rdfs:domain :TripAirplane .
+
+
+###  http://www.ex.org/myontology/tripBusHasName
+:tripBusHasName rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :tripHasName ;
+                rdfs:domain :TripBus .
+
+
+###  http://www.ex.org/myontology/tripBusStopTime
+:tripBusStopTime rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :tripStopTime ;
+                 rdfs:domain :TripBus .
+
+
+###  http://www.ex.org/myontology/tripHasName
+:tripHasName rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :Trip .
+
+
+###  http://www.ex.org/myontology/tripShipStopTime
+:tripShipStopTime rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :tripStopTime ;
+                  rdfs:domain :TripShip .
+
+
+###  http://www.ex.org/myontology/tripStopTime
+:tripStopTime rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Trip .
+
+
+###  http://www.ex.org/myontology/tripTrainStopTime
+:tripTrainStopTime rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :tripStopTime ;
+                   rdfs:domain :TripTrain .
+
+
+###  http://www.ex.org/myontology/tripTramStopTime
+:tripTramStopTime rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :tripStopTime ;
+                  rdfs:domain :TripTram .
+
+
+###  http://www.ex.org/myontology/tripUndergroundStopTime
+:tripUndergroundStopTime rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf :tripStopTime ;
+                         rdfs:domain :TripUnderground .
+
+
+###  http://www.ex.org/ontologyEL15187/airportHasName
+:airportHasName rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :stationHasName ;
+                rdfs:domain :Airport .
+
+
+###  http://www.ex.org/ontologyEL15187/portHasName
+:portHasName rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :stationHasName ;
+             rdfs:domain :Port .
+
+
+###  http://www.ex.org/ontologyEL15187/routeAirplaneHasName
+:routeAirplaneHasName rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :routeHasName ;
+                      rdfs:domain :RouteAirplane .
+
+
+###  http://www.ex.org/ontologyEL15187/routeShipHasName
+:routeShipHasName rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :routeHasName ;
+                  rdfs:domain :RouteShip .
+
+
+###  http://www.ex.org/ontologyEL15187/routeTrainHasName
+:routeTrainHasName rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :routeHasName ;
+                   rdfs:domain :RouteTrain .
+
+
+###  http://www.ex.org/ontologyEL15187/routeTramHasName
+:routeTramHasName rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :routeHasName ;
+                  rdfs:domain :RoutTram .
+
+
+###  http://www.ex.org/ontologyEL15187/routeUndergroundHasName
+:routeUndergroundHasName rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf :routeHasName ;
+                         rdfs:domain :RouteUnderground .
+
+
+###  http://www.ex.org/ontologyEL15187/stationTrainHasName
+:stationTrainHasName rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :stationHasName ;
+                     rdfs:domain :StationTrain .
+
+
+###  http://www.ex.org/ontologyEL15187/stationTramHasName
+:stationTramHasName rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :stationHasName ;
+                    rdfs:domain :StationTram .
+
+
+###  http://www.ex.org/ontologyEL15187/stationUndergroundHasName
+:stationUndergroundHasName rdf:type owl:DatatypeProperty ;
+                           rdfs:subPropertyOf :stationHasName ;
+                           rdfs:domain :StationUnderground .
+
+
+###  http://www.ex.org/ontologyEL15187/tripAirplaneHasName
+:tripAirplaneHasName rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :tripHasName ;
+                     rdfs:domain :TripAirplane .
+
+
+###  http://www.ex.org/ontologyEL15187/tripShipHasName
+:tripShipHasName rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :tripHasName ;
+                 rdfs:domain :TripShip .
+
+
+###  http://www.ex.org/ontologyEL15187/tripTrainHasName
+:tripTrainHasName rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :tripHasName ;
+                  rdfs:domain :TripTrain .
+
+
+###  http://www.ex.org/ontologyEL15187/tripTramHasName
+:tripTramHasName rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :tripHasName ;
+                 rdfs:domain :TripTrain .
+
+
+###  http://www.ex.org/ontologyEL15187/tripUndergroundHasName
+:tripUndergroundHasName rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf :tripHasName ;
+                        rdfs:domain :TripUnderground .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.ex.org/myontology/Airplane
+:Airplane rdf:type owl:Class ;
+          rdfs:subClassOf :Mean .
+
+
+###  http://www.ex.org/myontology/Airport
+:Airport rdf:type owl:Class ;
+         rdfs:subClassOf :Station .
+
+
+###  http://www.ex.org/myontology/Bus
+:Bus rdf:type owl:Class ;
+     rdfs:subClassOf :Mean .
+
+
+###  http://www.ex.org/myontology/Mean
+:Mean rdf:type owl:Class .
+
+
+###  http://www.ex.org/myontology/Port
+:Port rdf:type owl:Class ;
+      rdfs:subClassOf :Station .
+
+
+###  http://www.ex.org/myontology/RoutTram
+:RoutTram rdf:type owl:Class ;
+          rdfs:subClassOf :Route .
+
+
+###  http://www.ex.org/myontology/Route
+:Route rdf:type owl:Class .
+
+
+###  http://www.ex.org/myontology/RouteAirplane
+:RouteAirplane rdf:type owl:Class ;
+               rdfs:subClassOf :Route .
+
+
+###  http://www.ex.org/myontology/RouteBus
+:RouteBus rdf:type owl:Class ;
+          rdfs:subClassOf :Route .
+
+
+###  http://www.ex.org/myontology/RouteShip
+:RouteShip rdf:type owl:Class ;
+           rdfs:subClassOf :Route .
+
+
+###  http://www.ex.org/myontology/RouteTrain
+:RouteTrain rdf:type owl:Class ;
+            rdfs:subClassOf :Route .
+
+
+###  http://www.ex.org/myontology/RouteUnderground
+:RouteUnderground rdf:type owl:Class ;
+                  rdfs:subClassOf :Route .
+
+
+###  http://www.ex.org/myontology/Ship
+:Ship rdf:type owl:Class ;
+      rdfs:subClassOf :Mean .
+
+
+###  http://www.ex.org/myontology/Station
+:Station rdf:type owl:Class .
+
+
+###  http://www.ex.org/myontology/StationBus
+:StationBus rdf:type owl:Class ;
+            rdfs:subClassOf :Station .
+
+
+###  http://www.ex.org/myontology/StationTrain
+:StationTrain rdf:type owl:Class ;
+              rdfs:subClassOf :Station .
+
+
+###  http://www.ex.org/myontology/StationTram
+:StationTram rdf:type owl:Class ;
+             rdfs:subClassOf :Station .
+
+
+###  http://www.ex.org/myontology/StationUnderground
+:StationUnderground rdf:type owl:Class ;
+                    rdfs:subClassOf :Station .
+
+
+###  http://www.ex.org/myontology/Train
+:Train rdf:type owl:Class ;
+       rdfs:subClassOf :Mean .
+
+
+###  http://www.ex.org/myontology/Tram
+:Tram rdf:type owl:Class ;
+      rdfs:subClassOf :Mean .
+
+
+###  http://www.ex.org/myontology/Trip
+:Trip rdf:type owl:Class .
+
+
+###  http://www.ex.org/myontology/TripAirplane
+:TripAirplane rdf:type owl:Class ;
+              rdfs:subClassOf :Trip .
+
+
+###  http://www.ex.org/myontology/TripBus
+:TripBus rdf:type owl:Class ;
+         rdfs:subClassOf :Trip .
+
+
+###  http://www.ex.org/myontology/TripShip
+:TripShip rdf:type owl:Class ;
+          rdfs:subClassOf :Trip .
+
+
+###  http://www.ex.org/myontology/TripTrain
+:TripTrain rdf:type owl:Class ;
+           rdfs:subClassOf :Trip .
+
+
+###  http://www.ex.org/myontology/TripTram
+:TripTram rdf:type owl:Class ;
+          rdfs:subClassOf :Trip .
+
+
+###  http://www.ex.org/myontology/TripUnderground
+:TripUnderground rdf:type owl:Class ;
+                 rdfs:subClassOf :Trip .
+
+
+###  http://www.ex.org/myontology/Underground
+:Underground rdf:type owl:Class ;
+             rdfs:subClassOf :Mean .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Mean
+                :Route
+                :Station
+                :Trip
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :stationIsLocatedAt
+                :stationStopTime
+                :tripStopTime
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
